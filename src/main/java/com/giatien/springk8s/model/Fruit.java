@@ -3,6 +3,7 @@ package com.giatien.springk8s.model;
 
 import com.giatien.springk8s.common.audit.FruitAudit;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 
 
 @Entity
+@Builder
 public class Fruit extends FruitAudit {
     @Id
     @GeneratedValue
