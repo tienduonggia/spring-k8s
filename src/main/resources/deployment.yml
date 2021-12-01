@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: springboot-postgres-k8s
+  name: spring-k8s
   labels:
-    name: springboot-postgres-k8s
+    name: spring-k8s
 spec:
   ports:
     - nodePort: 30163
@@ -11,27 +11,26 @@ spec:
       targetPort: 8080
       protocol: TCP
   selector:
-    app: springboot-postgres-k8s
+    app: spring-k8s
   type: NodePort
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-postgres-k8s
+  name: spring-k8s
 spec:
   selector:
     matchLabels:
-      app: springboot-postgres-k8s
-  replicas: 3
+      app: spring-k8s
   template:
     metadata:
       labels:
-        app: springboot-postgres-k8s
+        app: spring-k8s
     spec:
       containers:
-        - name: springboot-postgres-k8s
-          image: giatien310/springboot-postgres-k8s:1.0
+        - name: spring-k8s
+          image: giatien310/spring-k8s:1.0
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables

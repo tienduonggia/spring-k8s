@@ -1,8 +1,8 @@
 version: '3.1'
 services:
   app:
-    container_name: springboot-postgresql
-    image: springboot-postgresql
+    container_name: spring-k8s
+    image: giatien310/spring-k8s
     build: ./
     ports:
       - "8080:8080"
