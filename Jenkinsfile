@@ -5,7 +5,7 @@ pipeline{
     
       stage("test"){
       steps {
-          echo 'Testing application....'
+          echo 'Testing test hook application....'
       }
     }
     
