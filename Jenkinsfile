@@ -17,7 +17,7 @@ pipeline{
     stage("build"){
       steps {
          echo 'Building Jar file....'
-         sh 'mvn clean intsall -DskipTests=true'
+         sh 'mvn clean install -DskipTests=true'
          echo 'Building docker images....'
          withDockerRegistry(credentialsId: '17e47e10-b157-4b87-8dfa-57779c14c9f9', url: 'https://index.docker.io/v1/') {
           sh 'docker build -t giatien310/springboot-postgres-k8s:1.0 .'
