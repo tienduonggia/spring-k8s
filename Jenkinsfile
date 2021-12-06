@@ -2,6 +2,8 @@ pipeline{
   agent any
   tools{
     maven 'maven3'
+    jdk 'jdk11'
+    dockerTool  "docker"
   }
   stages {
     
