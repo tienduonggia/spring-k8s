@@ -6,6 +6,7 @@ pipeline{
       stage("test"){
       steps {
           echo 'Testing test for web hook application....'
+          sh 'mvn test'
       }
     }
     
