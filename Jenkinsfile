@@ -7,15 +7,33 @@ pipeline{
     
       stage("test"){
       steps {
-          echo 'Testing test for web hook application....'
+          echo 'Testing application....'
           sh 'mvn test'
+          echo '-----------------------TEST SUCCESSFUL-----------------------'
       }
     }
     
     
     stage("build"){
       steps {
-         echo 'Building test application....'
+         echo 'Building Jar file....'
+         sh 'mvn clean install -DskipTests=true'
+         echo 'Building docker images....'
+         withDockerRegistry(credentialsId: '17e47e10-b157-4b87-8dfa-57779c14c9f9', url: 'https://index.docker.io/v1/') {
+          sh 'docker build -t giatien310/springboot-postgres-k8s:1.0 .'
+        }
+        echo '-----------------------BUILD SUCCESSFUL-----------------------'
+         
+      }
+    }
+
+    stage("push to docker hub"){
+      steps {
+         echo 'Pushing images....'
+         withDockerRegistry(credentialsId: '17e47e10-b157-4b87-8dfa-57779c14c9f9', url: 'https://index.docker.io/v1/') {
+          sh 'docker push giatien310/springboot-postgres-k8s:1.0'
+        }
+        echo '-----------------------PUSH SUCCESSFUL-----------------------'
       }
     }
     
