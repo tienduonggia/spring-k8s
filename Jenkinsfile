@@ -1,18 +1,21 @@
 pipeline{
   agent any
-  
+  tools{
+    maven 'maven3'
+  }
   stages {
     
       stage("test"){
       steps {
-          echo 'Testing test hook application....'
+          echo 'Testing test for web hook application....'
+          sh 'mvn test'
       }
     }
     
     
     stage("build"){
       steps {
-         echo 'Building application....'
+         echo 'Building test application....'
       }
     }
     
