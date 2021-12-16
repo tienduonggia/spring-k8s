@@ -8,3 +8,7 @@ before_install:
 script:
   - ./mvnw test
   - ./mvnw clean install -DskipTests=true
+after_success:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker build -t giatien310/springboot-postgres-k8s:1.0 .
+  - docker push giatien310/springboot-postgres-k8s:1.0
